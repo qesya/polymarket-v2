@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(claude:*)",
+      "Bash(python3:*)",
+      "Bash(/root/polymarket-v2/venv/bin/python -c \"from anthropic.types import ThinkingBlock; print\\(ThinkingBlock.__doc__\\)\")",
+      "Bash(/root/polymarket-v2/venv/bin/python -c \"import xgboost as xgb; print\\(dir\\(xgb.XGBClassifier\\(\\)\\)\\)\" 2>/dev/null | tr ',' '\\\\n' | grep -i \"feature\\\\|importance\\\\|predict\\\\|early\" | head -20)",
+      "Bash(ls:*)",
+      "Bash(source:*)",
+      "Bash(find:*)",
+      "Bash(git init:*)",
+      "Bash(git rm:*)"
+    ]
+  }
+}
