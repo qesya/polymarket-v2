@@ -115,6 +115,36 @@ services:
         condition: service_healthy
     command: ["celery", "-A", "core.bus", "worker", "-Q", "retrain,postmortem", "--concurrency=2", "--loglevel=info"]
 
+  # ── Dashboard ───────────────────────────────────────────────────────────────
+
+  dashboard_api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - POSTGRES_URL=postgresql://trader:${POSTGRES_PASSWORD:-changeme}@postgres:5432/polymarket
+      - PROMETHEUS_URL=http://agents:8001
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:4173
+    ports:
+      - "8080:8080"
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - dashboard_api
+
   # ── Monitoring ──────────────────────────────────────────────────────────────
 
   prometheus:

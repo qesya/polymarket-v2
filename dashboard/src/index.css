@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-surface text-white antialiased; font-family: 'Inter', sans-serif; }
+  * { box-sizing: border-box; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-surface; }
+  ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+}
+
+@layer utilities {
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .pnl-pos { @apply text-emerald-400 font-medium; }
+  .pnl-neg { @apply text-red-400 font-medium; }
+  .pnl-zero { @apply text-gray-400; }
+}
