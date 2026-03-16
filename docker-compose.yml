@@ -126,9 +126,9 @@ services:
       - REDIS_URL=redis://redis:6379
       - POSTGRES_URL=postgresql://trader:${POSTGRES_PASSWORD:-changeme}@postgres:5432/polymarket
       - PROMETHEUS_URL=http://agents:8001
-      - CORS_ORIGINS=http://localhost:5173,http://localhost:4173
+      - CORS_ORIGINS=["http://localhost:5173","http://localhost:4173"]
     ports:
-      - "8080:8080"
+      - "8082:8082"
     depends_on:
       redis:
         condition: service_healthy
